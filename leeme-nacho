@@ -1,0 +1,4 @@
+esta hecho asi:
+
+TareaList es un componente donde en data tiene almacenado un vector con las
+tareas, cada tarea es un objeto que tiene el nombre y el tiempo que lleva realizarla.
