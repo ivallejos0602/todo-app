@@ -1,7 +1,7 @@
 <template lang="">
        <div>
             <ul>
-                 <p>me ves git? lalala jajaja!---</p>
+                 <p>me ves git? lalala jajaja!---para ver cambios en la nube</p>
                  <p>nombre tarea</p>
                  <input v-model="nombreTareaInput"/>
                   <p>tiempo tarea</p>
