@@ -1,17 +1,40 @@
 <template>
   <div id="app">
-    <TareasList></TareasList>
+     
+   <CompAgregarTarea  @agregarNuevaTarea="agregarTarea" ></CompAgregarTarea>
+   <CompListarTareas v-bind:tasks="tareas"></CompListarTareas>
+   
   </div>
 </template>
 
 <script>
-import TareasList from './components/TareasList.vue'
+
+import CompAgregarTarea from './components/CompAgregarTarea'
+import CompListarTareas from './components/CompListarTareas'
 
 export default {
   name: 'App',
   components: {
-    TareasList
-  }
+   CompAgregarTarea,
+   CompListarTareas
+  },
+  data(){
+    return{
+         nombreTareaInput:'escriba...',
+         idTarea:1,
+         tareas:[]  
+         }
+    },
+  methods: {
+    agregarTarea(nombreTareaInput){
+
+        this.tareas.push({
+          idTarea: this.idTarea,
+          nombreTarea: nombreTareaInput
+          });
+        this.idTarea++;
+    }
+  },  
 }
 </script>
 
