@@ -2,7 +2,8 @@
   <div id="app">
      
    <CompAgregarTarea  @agregarNuevaTarea="agregarTarea" ></CompAgregarTarea>
-   <CompListarTareas v-bind:tasks="tareas"></CompListarTareas>
+   <CompListarTareas @borrarTareaDesdeHijo="borrarTarea" v-bind:tasks="tareas"></CompListarTareas>
+   <CompBorrarTarea @borrarTareaDesdeHijo="borrarTarea"></CompBorrarTarea>
    
   </div>
 </template>
@@ -11,12 +12,14 @@
 
 import CompAgregarTarea from './components/CompAgregarTarea'
 import CompListarTareas from './components/CompListarTareas'
+import CompBorrarTarea from './components/CompBorrarTarea'
 
 export default {
   name: 'App',
   components: {
    CompAgregarTarea,
-   CompListarTareas
+   CompListarTareas,
+   CompBorrarTarea
   },
   data(){
     return{
@@ -33,6 +36,12 @@ export default {
           nombreTarea: nombreTareaInput
           });
         this.idTarea++;
+    },
+    borrarTarea(numTarea){
+           this.tareas = this.tareas.filter(elem => {
+                return  (elem.idTarea) !== parseInt(numTarea);
+           })
+
     }
   },  
 }
