@@ -2,7 +2,12 @@
   <div id="app">
      
    <CompAgregarTarea  @agregarNuevaTarea="agregarTarea" ></CompAgregarTarea>
-   <CompListarTareas @borrarTareaDesdeHijo="borrarTarea" v-bind:tasks="tareas"></CompListarTareas>
+
+   <CompListarTareas @borrarTareaDesdeHijo="borrarTarea" 
+                     @finalizarTareaDesdeHijo="finalizarTarea" 
+                     v-bind:tasks="tareas">
+    </CompListarTareas>
+
    <CompBorrarTarea @borrarTareaDesdeHijo="borrarTarea"></CompBorrarTarea>
    
   </div>
@@ -25,7 +30,8 @@ export default {
     return{
          nombreTareaInput:'escriba...',
          idTarea:1,
-         tareas:[]  
+         tareas:[],
+         
          }
     },
   methods: {
@@ -33,7 +39,8 @@ export default {
 
         this.tareas.push({
           idTarea: this.idTarea,
-          nombreTarea: nombreTareaInput
+          nombreTarea: nombreTareaInput,
+          checked:false,
           });
         this.idTarea++;
     },
@@ -42,13 +49,24 @@ export default {
                 return  (elem.idTarea) !== parseInt(numTarea);
            })
 
-    }
+    },
+    finalizarTarea(id){
+      console.log("finalizó la tarea"+id);
+      this.tareas = this.tareas.map(
+                   elem => {
+                     if (elem.idTarea === id){
+                       elem.checked = !elem.checked;
+                     }
+                    return elem; 
+                   })
+     },
   },  
 }
 </script>
 
 <style>
 #app {
+   
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
