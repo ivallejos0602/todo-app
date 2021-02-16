@@ -9,6 +9,8 @@
     </CompListarTareas>
 
    <CompBorrarTarea @borrarTareaDesdeHijo="borrarTarea"></CompBorrarTarea>
+
+   <CompBorrarTareas @borrarTodasLasTareasDesdeHijo="borrarTodasLasTareas"></CompBorrarTareas>
    
   </div>
 </template>
@@ -18,13 +20,15 @@
 import CompAgregarTarea from './components/CompAgregarTarea'
 import CompListarTareas from './components/CompListarTareas'
 import CompBorrarTarea from './components/CompBorrarTarea'
+import CompBorrarTareas from './components/CompBorrarTareas'
 
 export default {
   name: 'App',
   components: {
    CompAgregarTarea,
    CompListarTareas,
-   CompBorrarTarea
+   CompBorrarTarea,
+   CompBorrarTareas,
   },
   data(){
     return{
@@ -59,6 +63,9 @@ export default {
                      }
                     return elem; 
                    })
+     },
+     borrarTodasLasTareas(){
+          this.tareas=[];
      },
   },  
 }
